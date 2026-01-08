@@ -20,7 +20,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // Connect to MongoDB
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/inventory_db';
+// Support both MONGO_URI and MONGODB_URI for compatibility
+const MONGODB_URI = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/inventory_db';
 
 mongoose.connect(MONGODB_URI)
   .then(() => {
